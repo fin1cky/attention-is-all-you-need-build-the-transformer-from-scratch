@@ -34,13 +34,7 @@ def encode_sentence_to_ids(sentence, token_to_id, unk_token='<unk>'):
     tokens = sentence.split(" ")
     sentence_token_ids = []
     for token in tokens:
-        # token_id = -1
-        # if token not in token_to_id:
-        #     token_id = token_to_id[unk_token]
-        # else:
-        #     token_id = token_to_id[token]
         token_id = token_to_id.get(token, token_to_id[unk_token])
-
         sentence_token_ids.append(token_id)
 
     return sentence_token_ids
