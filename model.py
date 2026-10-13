@@ -48,8 +48,16 @@ def decode_ids_to_tokens(ids, id_to_token):
     
     return tokens
 
-# Step 5 - pad_id_sequence (not yet solved)
-# TODO: implement
+# Step 5 - pad_id_sequence
+def pad_id_sequence(ids, max_len, pad_id):
+    # TODO: return a list of length exactly max_len, padding with pad_id or truncating.
+    n = len(ids)
+    if n < max_len:
+        ids = ids + [pad_id] * (max_len - n)
+    elif n > max_len:
+        ids = ids[:max_len]
+    
+    return ids
 
 # Step 6 - stack_padded_sequences_to_batch (not yet solved)
 # TODO: implement
@@ -235,6 +243,9 @@ def decode_ids_to_tokens(ids, id_to_token):
 # TODO: implement
 
 # Step 67 - apply_adam_bias_correction (not yet solved)
+# TODO: implement
+
+# Step 68 - compute_adam_parameter_update (not yet solved)
 # TODO: implement
 
 # Step 69 - apply_adam_step_to_all_parameters (not yet solved)

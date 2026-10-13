@@ -14,7 +14,7 @@ python scaffold.py
 - [x] **2.** build_id_to_token_vocab
 - [x] **3.** encode_sentence_to_ids
 - [x] **4.** decode_ids_to_tokens
-- [ ] **5.** pad_id_sequence
+- [x] **5.** pad_id_sequence
 - [ ] **6.** stack_padded_sequences_to_batch
 - [ ] **7.** scale_embeddings_by_sqrt_d_model
 - [ ] **8.** compute_positional_div_term
@@ -77,6 +77,7 @@ python scaffold.py
 - [ ] **65.** update_adam_first_moment
 - [ ] **66.** update_adam_second_moment
 - [ ] **67.** apply_adam_bias_correction
+- [ ] **68.** compute_adam_parameter_update
 - [ ] **69.** apply_adam_step_to_all_parameters
 - [ ] **70.** zero_all_parameter_gradients
 - [ ] **71.** compute_batch_training_loss
