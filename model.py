@@ -76,8 +76,15 @@ def scale_embeddings_by_sqrt_d_model(embeddings, d_model):
     # TODO: rescale embeddings by sqrt(d_model) as in the original Transformer paper
     return embeddings * math.sqrt(d_model)
 
-# Step 8 - compute_positional_div_term (not yet solved)
-# TODO: implement
+# Step 8 - compute_positional_div_term
+import torch
+import math
+
+def compute_positional_div_term(d_model):
+    # TODO: return a 1D FloatTensor of length d_model // 2 holding the sinusoidal frequency divisors
+    two_i = torch.arange(0, d_model, 2, dtype=torch.float32) 
+    # instead of calculating i and multiplying by 2, directly calculate 2i
+    return torch.exp(-two_i * math.log(10000)/d_model)
 
 # Step 9 - build_position_index_column (not yet solved)
 # TODO: implement
