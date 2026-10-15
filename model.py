@@ -133,8 +133,8 @@ import torch
 
 def add_positional_encoding_to_embeddings(embedded_batch, positional_encoding):
     # TODO: add the first L rows of positional_encoding to embedded_batch and return the sum.
-
-    return embedded_batch + positional_encoding[:len(embedded_batch[0]),:]
+    L = embedded_batch.size(1)
+    return embedded_batch + positional_encoding[:L]
 
 # Step 14 - build_padding_mask (not yet solved)
 # TODO: implement
