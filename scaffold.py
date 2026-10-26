@@ -96,9 +96,11 @@ if __name__ == "__main__":
     model_params = {
         "encoder_layers": enc_layers,
         "decoder_layers": dec_layers,
-        "embeddings": emb_params,
-        "token_embedding": emb_params["src_embedding"],
+        "src_embedding": emb_params["src_embedding"],
+        "tgt_embedding": emb_params["tgt_embedding"],
         "output_projection": emb_params["output_projection"],
+        # alias of src_embedding, kept for forward passes written against the earlier step 51 contract
+        "token_embedding": emb_params["src_embedding"],
         "d_model": d_model,
     }
     parameter_list = collect_model_parameters_into_list(enc_layers, dec_layers, emb_params)
