@@ -177,8 +177,15 @@ def scale_attention_scores(scores, d_k):
     # TODO: divide raw attention scores by sqrt(d_k) to stabilize softmax inputs
     return scores/math.sqrt(d_k)
 
-# Step 19 - mask_attention_scores_with_neg_inf (not yet solved)
-# TODO: implement
+# Step 19 - mask_attention_scores_with_neg_inf
+import torch
+
+def mask_attention_scores_with_neg_inf(scores, mask):
+    """Set entries of scores where mask is False to -inf."""
+    # TODO: replace blocked positions of scores with negative infinity
+    return scores.masked_fill(~mask, float('-inf')) 
+    # invert mask using ~ and fill where false, without ~ it fills where true
+    # because true means replace and false means keep original
 
 # Step 20 - softmax_attention_weights (not yet solved)
 # TODO: implement
