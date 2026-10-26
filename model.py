@@ -187,8 +187,22 @@ def mask_attention_scores_with_neg_inf(scores, mask):
     # invert mask using ~ and fill where false, without ~ it fills where true
     # because true means replace and false means keep original
 
-# Step 20 - softmax_attention_weights (not yet solved)
-# TODO: implement
+# Step 20 - softmax_attention_weights
+import torch
+import torch.nn.functional as F
+
+def softmax_attention_weights(masked_scores):
+    # TODO: softmax over the last axis, zeroing rows that are entirely -inf
+    # since softmax over float('-inf') produces NaN which can cause NaN gradients
+    # (not stable) during backprop during training
+    # across each row, check if ATLEAST ONE element is non-infinite
+    # keepdim so that we have one value for each row while preserving dim for broadcasting
+    # ~ because we will use masked_fill so we need rows where nothing is finite to be true
+    fully_masked = ~torch.isfinite(masked_scores).any(dim=-1, keepdim=True)
+    masked_scores = masked_scores.masked_fill(fully_masked, 0.0)
+    masked_softmax = F.softmax(masked_scores, dim=-1)
+
+    return masked_softmax.masked_fill(fully_masked, 0.0)
 
 # Step 21 - apply_attention_weights_to_values (not yet solved)
 # TODO: implement
