@@ -258,7 +258,6 @@ def merge_heads_back_to_model_dim(multi_head_tensor):
     B = multi_head_tensor.shape[0]
     L = multi_head_tensor.shape[1]
     return multi_head_tensor.reshape(B, L, -1)
-    # return multi_head_tensor.transpose(1, 2).reshape(*multi_head_tensor[::-1], -1)
 
 # Step 26 - apply_linear_projection (not yet solved)
 # TODO: implement
