@@ -199,6 +199,8 @@ def softmax_attention_weights(masked_scores):
     # keepdim so that we have one value for each row while preserving dim for broadcasting
     # ~ because we will use masked_fill so we need rows where nothing is finite to be true
     fully_masked = ~torch.isfinite(masked_scores).any(dim=-1, keepdim=True)
+    # full_masked is one boolean per row, pytorch will broadcast it in masked_fill operation
+    # so it is broadcasted across all columns
     masked_scores = masked_scores.masked_fill(fully_masked, 0.0)
     masked_softmax = F.softmax(masked_scores, dim=-1)
 
