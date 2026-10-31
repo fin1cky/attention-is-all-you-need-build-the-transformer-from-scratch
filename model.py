@@ -326,7 +326,7 @@ def apply_ffn_first_linear_and_relu(x, w1, b1):
     # TODO: project x by w1, add b1, then apply a ReLU activation.
     # the larger intermediate representations give the model more capacity to 
     # learn useful transformations of the token features.
-
+    # T in shape is the number of tokens per sequence
     return torch.relu(x @ w1 + b1)
 
 # Step 33 - apply_ffn_second_linear (not yet solved)
