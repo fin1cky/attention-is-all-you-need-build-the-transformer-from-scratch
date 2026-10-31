@@ -354,8 +354,23 @@ def compute_layer_norm_mean_and_variance(x):
     
     return mean, variance
 
-# Step 36 - normalize_and_scale_with_gamma_beta (not yet solved)
-# TODO: implement
+# Step 36 - normalize_and_scale_with_gamma_beta
+import torch
+
+def normalize_and_scale_with_gamma_beta(x, gamma, beta, eps=1e-5):
+    # TODO: standardize x along the last axis then apply gamma and beta affine transform
+    # gamma and beta are initially 1s and 0s (per token features)
+    # so token with 4 dim representations has 4 gammas and 4 betas
+    # LayerNorm initially forces each token's features to have approximately zero mean and unit variance.
+    # But this normalization might remove useful information about the original scale and offset.
+    # The learnable parameters allow the model to adjust the normalized representation:
+    # - gamma_i controls the scale of feature i.
+    # - beta_i controls the shift of feature i.
+    # gamma and beta are updated through gradient descent.
+    
+    mean, variance = compute_layer_norm_mean_and_variance(x)
+    x_hat = (x - mean)/torch.sqrt(variance + eps)
+    return gamma * x_hat + beta
 
 # Step 37 - apply_residual_add_and_norm (not yet solved)
 # TODO: implement
