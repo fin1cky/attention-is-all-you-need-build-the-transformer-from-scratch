@@ -382,6 +382,7 @@ def apply_residual_add_and_norm(residual_input, sublayer_output, gamma, beta, ep
 # Step 38 - apply_dropout_with_keep_mask
 def apply_dropout_with_keep_mask(x, keep_mask, keep_prob):
     # TODO: multiply x by the boolean keep_mask and rescale by 1/keep_prob.
+    # underlying concept in read section quite good
     keep_mask = keep_mask.to(x.dtype)
     return (keep_mask * x)/keep_prob
 
